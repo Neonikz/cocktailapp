@@ -1,37 +1,20 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Redirect } from "react-router-dom";
+import { LoginScreen } from "../pages/Auth/LoginScreen";
+import { DashboardRoutes } from "./DashboardRoutes";
+import { PrivateRoute } from "./PrivateRoute";
+import { PublicRoute } from "./PublicRoute";
 
 export const AppRouter = () => {
   return (
     <Router>
       <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/about">About</Link>
-            </li>
-            <li>
-              <Link to="/users">Users</Link>
-            </li>
-          </ul>
-        </nav>
         <Switch>
-          <Route path="/about">
-          </Route>
-          <Route path="/users">
-          </Route>
-          <Route path="/">
-          </Route>
+            <PublicRoute exact isAuthenticated={false} path="/login"  component={ LoginScreen }/>
+            <PrivateRoute  isAuthenticated={ false } path="/" component={ DashboardRoutes }/>
+            <Redirect to="/"/>
         </Switch>
       </div>
     </Router>
   );
-}
+};
