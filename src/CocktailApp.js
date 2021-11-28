@@ -1,9 +1,10 @@
-import React from 'react'
+import React from 'react';
+import { AppRouter } from './routes/AppRouter';
 
 export const CocktailApp = () => {
     return (
-        <div>
-            Holas
-        </div>
+        <>
+            <AppRouter />
+        </>
     )
 }
